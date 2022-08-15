@@ -1,0 +1,4 @@
+- Create Pod 
+kubectl  run nginx --image=nginx  --dry-run -n mynamespace -o yaml > pod.yaml
+
+
