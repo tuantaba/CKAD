@@ -1,0 +1,15 @@
+pod (po), replicationcontroller (rc), deployment (deploy), daemonset (ds), replicaset (rs)
+
+
+- Show log of pod
+kubectl  logs nginx
+
+- Show log about previous instance
+kubectl  logs nginx -p  # --previous
+
+- show detail a pod
+kubectl  describe po/nginx
+kubectl get po nginx -o wide  # po/nginx
+
+- Run shell on nginx pod
+kubectl  exec -it nginx -- /bin/sh
