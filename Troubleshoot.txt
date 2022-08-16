@@ -1,0 +1,15 @@
+kubectl get nodes 
+NAME         STATUS     ROLES    AGE   VERSION
+k8s-test-1   Ready      master   14d   v1.15.4
+k8s-test-2   NotReady   <none>   14d   v1.15.4
+k8s-test-3   NotReady   <none>   14d   v1.15.4
+
+pod/demo-nginx-ingress-controller-5758fdfbdb-xldk5        0/1     Pending       0          13m
+pod/demo-nginx-ingress-controller-5758fdfbdb-xvt5h        1/1     Terminating   0          5d17h
+pod/demo-nginx-ingress-default-backend-5f84857685-8llhq   0/1     Pending       0          13m
+pod/demo-nginx-ingress-default-backend-5f84857685-gsvqt   1/1     Terminating   0          5d17h
+pod/demo-nginx-ingress-default-backend-5f84857685-jsf9f   1/1     Terminating   0          26m
+
+ -> 2 node full RAM -> fix  ->k8s cluster recovery
+ 
+

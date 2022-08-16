@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: v1
+  name: nginx1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: v1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: v1
+    spec:
+      containers:
+      - image: nginx
+        name: nginx1
+        resources: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: v2
+  name: nginx2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: v1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: v2
+    spec:
+      containers:
+      - image: nginx
+        name: nginx2
+        resources: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: v3
+  name: nginx3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: v1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: v3
+    spec:
+      containers:
+      - image: nginx
+        name: nginx3
+        resources: {}
+status: {}

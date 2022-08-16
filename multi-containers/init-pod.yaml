@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: web
+    spec:
+      containers:
+      - image: nginx
+        name: web
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - name: web-storage
+          mountPath: /usr/share/nginx/html    
+      initContainers:
+      - name: init-nginx-web
+        image: busybox
+        command: ['sh', '-c', 'wget -O /work-dir/index.html http://neverssl.com/online']
+        volumeMounts:
+        - name: web-storage
+          mountPath: /work-dir
+      volumes:
+      - name: web-storage
+        emptyDir: {}
+
+status: {}

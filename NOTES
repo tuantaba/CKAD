@@ -2,3 +2,4 @@
     + green-blue
     + rollingupdate
 
+- metrics svr: https://github.com/kubernetes-sigs/metrics-server

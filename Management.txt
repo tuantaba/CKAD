@@ -1,5 +1,9 @@
 pod (po), replicationcontroller (rc), deployment (deploy), daemonset (ds), replicaset (rs)
 
+- kubectl explain po.spec
+- kubectl explain deploy.spec.template.spec.containers
+
+- kubectl get nodes   (-o wide, --show-labels)
 
 - Show log of pod
 kubectl  logs nginx
@@ -13,3 +17,12 @@ kubectl get po nginx -o wide  # po/nginx
 
 - Run shell on nginx pod
 kubectl  exec -it nginx -- /bin/sh
+
+
+-Delete deployment 
+kubectl  delete deployment.apps/busybox
+
+
+- RS 
+kubectl get rs -l app=nginx
+

@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-nginx
+  name: app-nginx-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app-nginx
+    spec:
+      containers:
+      - image: nginx
+        name: app-nginx-1
+        resources: {}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: workdir
+          mountPath: /usr/share/nginx/html
+
+      initContainers:
+      - name: install
+        image: busybox
+        command:
+        - /bin/sh
+        - -c
+        - "echo version-1 > /work-dir/index.html"    
+        volumeMounts:
+        - name: workdir
+          mountPath: /work-dir
+      volumes:
+      - name: workdir
+        emptyDir: {}  
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-nginx
+  name: app-nginx-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app-nginx
+    spec:
+      containers:
+      - image: nginx
+        name: app-nginx-2
+        resources: {}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: workdir
+          mountPath: /usr/share/nginx/html
+      initContainers:
+      - name: install
+        image: busybox
+        command:
+        - /bin/sh
+        - -c
+        - "echo version-2 > /work-dir/index.html"    
+        volumeMounts:
+        - name: workdir
+          mountPath: /work-dir
+      volumes:
+      - name: workdir
+        emptyDir: {}            
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-nginx
+  name: svc-app-nginx
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: app-nginx
+  type: ClusterIP
+status:
+  loadBalancer: {}
