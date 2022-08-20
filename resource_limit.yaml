@@ -1,0 +1,23 @@
+
+#https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-limitation-resource
+  name: nginx-limitation-resource
+spec:      
+  containers:
+  - image: nginx
+    name: nginx
+    resources:
+      requests:
+        memory: "246Mi"
+        cpu: "100m"
+      limits:
+        memory: "512Mi"
+        cpu: "200m"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

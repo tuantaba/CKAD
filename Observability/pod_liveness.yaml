@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-liveness
+  name: nginx-liveness
+spec:
+  containers:
+  - image: nginx
+    name: nginx-liveness
+    resources: {}
+    livenessProbe:
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      exec:
+        command:
+          - ls
+          - /tmp
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

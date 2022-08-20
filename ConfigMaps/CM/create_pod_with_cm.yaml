@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    resources: {}
+    env:
+    - name: optionscf
+      valueFrom:
+        configMapKeyRef:
+          name: option-cm
+          key: var5    
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+
+status: {}

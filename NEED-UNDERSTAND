@@ -1,0 +1,17 @@
+- Network policies : https://kubernetes.io/docs/concepts/services-networking/network-policies/
+https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/
+
+- Y nghia cac thong so :
+  - ReadWriteOnce
+  - ReadWriteMany
+
+
+##
+Select NFS of other storages to center store if you want to multiple pods connect same storage
+
+  ###
+  Security
+HostPath volumes present many security risks, and it is a best practice to avoid the use of HostPaths when possible. When a HostPath volume must be used, it should be scoped to only the required file or directory, and mounted as ReadOnly.
+If restricting HostPath access to specific directories through AdmissionPolicy, volumeMounts MUST be required to use readOnly mounts for the policy to be effective.
+
+

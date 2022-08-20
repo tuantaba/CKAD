@@ -11,6 +11,11 @@ kubectl  logs nginx
 - Show log about previous instance
 kubectl  logs nginx -p  # --previous
 
+- get pod
+kubectl get po -o wide -l app=foo
+
+
+
 - show detail a pod
 kubectl  describe po/nginx
 kubectl get po nginx -o wide  # po/nginx
@@ -22,7 +27,33 @@ kubectl  exec -it nginx -- /bin/sh
 -Delete deployment 
 kubectl  delete deployment.apps/busybox
 
+- delete graceful on pod
+kubectl delete po busybox --force --grace-period=0
+
 
 - RS 
 kubectl get rs -l app=nginx
+
+
+- ServiceAccount
+kubectl get sa   //serviceaccounts
+kubectl  get sa myuser -o yaml
+kubectl create sa myuser
+
+- Get CPU/Mem utilization for ndoes (metric-server must be running)
+kubectl  top nodes
+Error from server (NotFound): the server could not find the requested resource (get services http:heapster:)
+
+-  list services
+Kubectl get svc
+kubectl get ep 
+kubectl  describe  svc nginx
+
+- Expose a resource as a new Kubernetes service
+expose (create a service)
+expose rc, rs, pod, deployment
+
+
+- Copy file from pod to local folder: (the fist container is default)
+kubectl  cp busybox:/etc/foo/passwd ./tmpfile
 
